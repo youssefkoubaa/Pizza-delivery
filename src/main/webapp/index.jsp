@@ -1,32 +1,34 @@
-<%@ page import="model.Pizza" %>
-<%@ page import="dao.PizzaDao" %>
-<%@ page import="java.util.List" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="java.util.ArrayList" %>
+<%@ page import="model.Pizza"%>
+<%@ page import="model.User"%>
+<%@ page import="dao.PizzaDao"%>
+<%@ page import="java.util.List"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@ page import="java.util.ArrayList"%>
 
 <%
-    // Create an instance of PizzaDao
-    PizzaDao pizzaDao = new PizzaDao();
+// Create an instance of PizzaDao
+PizzaDao pizzaDao = new PizzaDao();
 
-    // Retrieve the list of pizzas
-    List<Pizza> pizzas = pizzaDao.getAllPizzas();
+// Retrieve the list of pizzas
+List<Pizza> pizzas = pizzaDao.getAllPizzas();
 %>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
 
-	<!-- Basic Page Needs -->
-	<title>Pizzon</title>
-	<meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<!-- Basic Page Needs -->
+<title>Pizzon</title>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <!-- CSS -->
-    <link type="image/x-icon" href="images/favicon.png" rel="icon">
-    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/owl.carousel.css">
-	<link rel="stylesheet" type="text/css" href="css/style.css">
+<!-- CSS -->
+<link type="image/x-icon" href="images/favicon.png" rel="icon">
+<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/owl.carousel.css">
+<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
 
@@ -50,14 +52,15 @@
 				<div class="row align-items-center">
 					<div class="col-xl-3 col-lg-3 col-md-3 col-5">
 						<div class="header-logo">
-							<a href="index.html"><img src="images/logo.png" alt="Brand Logo"></a>
+							<a href="index.html"><img src="images/logo.png"
+								alt="Brand Logo"></a>
 						</div>
 					</div>
 					<div class="col-xl-9 col-lg-9 col-md-9 col-7">
 						<div class="main-menu">
 							<div class="menu-toggle">
-		                        <span></span>
-		                    </div>
+								<span></span>
+							</div>
 							<div class="menu">
 								<div class="sidemenu-header">
 									<div class="sidemenu-logo">
@@ -69,55 +72,69 @@
 								</div>
 								<ul>
 									<li class="active"><a href="index.html">Home</a></li>
-									<li>
-										<span class="opener"></span>
-										<a href="javascript:void(0)">Shop</a>
+									<li><span class="opener"></span> 
+									<a href="javascript:void(0)">Shop</a>
 										<ul class="dropdown-content">
 											<li><a href="shop-list.html">Shop List</a></li>
 											<li><a href="shop-detail.html">Shop Detail</a></li>
 											<li><a href="cart.html">Cart</a></li>
 											<li><a href="checkout.html">Checkout</a></li>
-										</ul>
-									</li>
-									<li>
-										<span class="opener"></span>
-										<a href="javascript:void(0)">Pages</a>
+										</ul></li>
+									<li><span class="opener"></span> <a
+										href="javascript:void(0)">Pages</a>
 										<ul class="dropdown-content">
 											<li><a href="about.html">About Us</a></li>
 											<li><a href="our-menu.html">Our Menu</a></li>
 											<li><a href="our-team.html">Our Team</a></li>
 											<li><a href="book-now.html">Book Now</a></li>
 											<li><a href="404.html">404 Page</a></li>
-										</ul>
-									</li>
-									<li>
-										<span class="opener"></span>
-										<a href="javascript:void(0)">Blog</a>
+										</ul></li>
+									<li><span class="opener"></span> <a
+										href="javascript:void(0)">Blog</a>
 										<ul class="dropdown-content">
 											<li><a href="blog-right.html">Blog Right</a></li>
 											<li><a href="blog-left.html">Blog Left</a></li>
 											<li><a href="blog-detail.html">Blog Detail</a></li>
-										</ul>
-									</li>
-									<li><a href="contact-us.html">Contact</a></li>
+										</ul></li>
+									<li><a href="contact-us.html">Contact</a>
+									<%
+										User user = (User) session.getAttribute("user");
+										if (user != null) {
+										%>
+										<li><span>Welcome, <%=user.getName()%></span></li>
+										<!-- Display user's name if logged in -->
+										<li><form action="logout" method="post">
+											<button type="submit">Logout</button>
+											<!-- Use a button instead of an anchor -->
+										</form></li>
+										<%
+										} else {
+										%>
+									<li><a href="registration.jsp">Register</a>
+									<li> <a href="login.jsp">Login</a></li>
+									<%
+										}
+										%>
+									
 								</ul>
 							</div>
 							<div class="icon-menu">
 								<ul>
-									<li class="search">
-										<a href="javascript:void(0)">
-											<img src="images/search-icon.png" class="normal-icon" alt="Search Icon">
-											<img src="images/search-icon-2.png" class="hover-icon" alt="Search Icon">
-										</a>
-									</li>
-									<li class="cart-slide position-r">
-										<a href="javascript:void(0)">
-											<img src="images/cart-icon.png" class="normal-icon" alt="Cart Icon">
-											<img src="images/cart-icon-2.png" class="hover-icon" alt="Cart Icon">
-											<span class="cart-count">0</span>
-										</a>
-									</li>
-								</ul>
+									<li class="search"><a href="javascript:void(0)"> <img
+											src="images/search-icon.png" class="normal-icon"
+											alt="Search Icon"> <img src="images/search-icon-2.png"
+											class="hover-icon" alt="Search Icon">
+									</a></li>
+									<li class="cart-slide position-r"><a
+										href="javascript:void(0)"> <img src="images/cart-icon.png"
+											class="normal-icon" alt="Cart Icon"> <img
+											src="images/cart-icon-2.png" class="hover-icon"
+											alt="Cart Icon"> <span class="cart-count">0</span>
+									</a></li>
+						</ul>
+
+
+
 							</div>
 						</div>
 					</div>
@@ -140,13 +157,18 @@
 				<img src="images/onion.png" alt="Vacter Image">
 			</div>
 			<div class="row align-items-center">
-				<div class="col-xl-5 col-lg-6 col-md-6 home-left-content wow fadeInLeft">
+				<div
+					class="col-xl-5 col-lg-6 col-md-6 home-left-content wow fadeInLeft">
 					<div class="home-banner-content">
-						<h1 class="home-banner-title">Handmade, With an Extra Pinch of <span>Love</span></h1>
+						<h1 class="home-banner-title">
+							Handmade, With an Extra Pinch of <span>Love</span>
+						</h1>
 						<div class="home-banner-desc">
-							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+							<p>Lorem Ipsum is simply dummy text of the printing and
+								typesetting industry.</p>
 						</div>
-						<a href="shop-list.html" class="btn-ct btn-large"><img src="images/cart-icon-white.png" alt="Cart Icon"> Order Now</a>
+						<a href="shop-list.html" class="btn-ct btn-large"><img
+							src="images/cart-icon-white.png" alt="Cart Icon"> Order Now</a>
 					</div>
 				</div>
 				<div class="col-xl-7 col-lg-6 col-md-6 home-right-img">
@@ -186,7 +208,8 @@
 				<div class="fresh-content wow fadeInUp">
 					<h3 class="title">Daily fresh and always tasty</h3>
 					<div class="fresh-des">
-						<p>There are many variations of passages of Lorem Ipsum available, but the majority haved</p>
+						<p>There are many variations of passages of Lorem Ipsum
+							available, but the majority haved</p>
 					</div>
 				</div>
 			</div>
@@ -210,37 +233,48 @@
 			</div>
 			<div class="wow fadeInLeft">
 				<div class="our-menu-content right-padding">
-					    <div class="menu-slider owl-carousel">
-        <% for (Pizza pizza : pizzas) { %>
-            <div class="menu-item-box rotate-img">
-                <div class="menu-item-img">
-                    <a href="shop-detail.html"><img src="images/<%= pizza.getImage() %>" alt="Menu Image"></a>
-                </div>
-                <div class="menu-item-info">
-                    <div class="menu-item-head">
-                        <div class="menu-item-title">
-                            <h5><a href="shop-detail.html"><%= pizza.getName() %></a></h5>
-                        </div>
-                        <div class="menu-item-price">
-                            <span><%= pizza.getPrix() %></span>
-                        </div>
-                    </div>
-                    <div class="item-rating">
-                        <!-- Your rating HTML here -->
-                    </div>
-                    <div class="menu-item-des">
-                        <p><%= pizza.getDescription() %></p>
-                    </div>
-                    <div class="menu-item-order">
-                        <a href="shop-detail.html" class="btn-ct btn-small"><img src="images/cart-icon-white.png" alt="Cart Icon"> Order Now</a>
-                    </div>
-                </div>
-            </div>
-        <% } %>
-    </div>
-					
-							
-							
+					<div class="menu-slider owl-carousel">
+						<%
+						for (Pizza pizza : pizzas) {
+						%>
+						<div class="menu-item-box rotate-img">
+							<div class="menu-item-img">
+								<a href="shop-detail.jsp?id=<%=pizza.getId()%>"><img
+									src="images/<%=pizza.getImage()%>" alt="Menu Image"></a>
+							</div>
+							<div class="menu-item-info">
+								<div class="menu-item-head">
+									<div class="menu-item-title">
+										<h5>
+											<a href="shop-detail.jsp?id=<%=pizza.getId()%>"><%=pizza.getName()%></a>
+										</h5>
+									</div>
+									<div class="menu-item-price">
+										<span><%=pizza.getPrix()%></span>
+									</div>
+								</div>
+								<div class="item-rating">
+									<!-- Your rating HTML here -->
+								</div>
+								<div class="menu-item-des">
+									<p><%=pizza.getDescription()%></p>
+								</div>
+								<div class="menu-item-order">
+									<a href="shop-detail.jsp?id=<%=pizza.getId()%>"
+										class="btn-ct btn-small"><img
+										src="images/cart-icon-white.png" alt="Cart Icon"> Order
+										Now</a>
+								</div>
+							</div>
+						</div>
+						<%
+						}
+						%>
+
+					</div>
+
+
+
 				</div>
 			</div>
 		</section>
@@ -269,9 +303,16 @@
 						</div>
 						<div class="story-content md-mb-40">
 							<div class="our-story-desc">
-								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+								<p>Lorem Ipsum is simply dummy text of the printing and
+									typesetting industry. Lorem Ipsum has been the industry's
+									standard dummy text ever since the 1500s, when an unknown
+									printer took a galley of type and scrambled it to make a type
+									specimen book. It has survived not only five centuries, but
+									also the leap into electronic typesetting, remaining
+									essentially unchanged.</p>
 							</div>
-							<a href="about.html" class="btn-ct right-arrow">Read More <img src="images/right.png" alt="right icon"></a>
+							<a href="about.html" class="btn-ct right-arrow">Read More <img
+								src="images/right.png" alt="right icon"></a>
 						</div>
 					</div>
 				</div>
@@ -281,7 +322,8 @@
 
 
 		<!-- Start Of Our Strength -->
-		<section class="our-strength position-r pt-150 pb-120 mb-150 bg-yellow overflow-h">
+		<section
+			class="our-strength position-r pt-150 pb-120 mb-150 bg-yellow overflow-h">
 			<div class="strength-vacter wow fadeInRight animation-delay-5">
 				<img src="images/strength-vacter.png" alt="Vacter Image">
 			</div>
@@ -297,7 +339,8 @@
 						</div>
 						<div class="strength-content">
 							<h4 class="strength-title">All kinds of Foods</h4>
-							<p>Lorem Ipsum is simply dummy text of the printing and type setting industry.</p>
+							<p>Lorem Ipsum is simply dummy text of the printing and type
+								setting industry.</p>
 						</div>
 					</div>
 					<div class="col-xl-3 col-lg-6 col-md-6 strength-box wow fadeInUp">
@@ -306,7 +349,8 @@
 						</div>
 						<div class="strength-content">
 							<h4 class="strength-title">Fresh Foods</h4>
-							<p>Lorem Ipsum is simply dummy text of the printing and type setting industry.</p>
+							<p>Lorem Ipsum is simply dummy text of the printing and type
+								setting industry.</p>
 						</div>
 					</div>
 					<div class="col-xl-3 col-lg-6 col-md-6 strength-box wow fadeInUp">
@@ -315,7 +359,8 @@
 						</div>
 						<div class="strength-content">
 							<h4 class="strength-title">Best Taste</h4>
-							<p>Lorem Ipsum is simply dummy text of the printing and type setting industry.</p>
+							<p>Lorem Ipsum is simply dummy text of the printing and type
+								setting industry.</p>
 						</div>
 					</div>
 					<div class="col-xl-3 col-lg-6 col-md-6 strength-box wow fadeInUp">
@@ -324,7 +369,8 @@
 						</div>
 						<div class="strength-content">
 							<h4 class="strength-title">On Time Delivery</h4>
-							<p>Lorem Ipsum is simply dummy text of the printing and type setting industry.</p>
+							<p>Lorem Ipsum is simply dummy text of the printing and type
+								setting industry.</p>
 						</div>
 					</div>
 				</div>
@@ -352,7 +398,8 @@
 						<div class="client-info">
 							<div class="client-name">Johan Doe</div>
 							<div class="client-desc">
-								<p>“Lorem Ipsum is simply dummy text of the print book. It has survived not only five centuries, but also the leap”</p>
+								<p>“Lorem Ipsum is simply dummy text of the print book. It
+									has survived not only five centuries, but also the leap”</p>
 							</div>
 							<div class="testimonial-rating">
 								<ul>
@@ -372,7 +419,8 @@
 						<div class="client-info">
 							<div class="client-name">Alex Saanu</div>
 							<div class="client-desc">
-								<p>“Lorem Ipsum is simply dummy text of the print book. It has survived not only five centuries, but also the leap”</p>
+								<p>“Lorem Ipsum is simply dummy text of the print book. It
+									has survived not only five centuries, but also the leap”</p>
 							</div>
 							<div class="testimonial-rating">
 								<ul>
@@ -392,7 +440,8 @@
 						<div class="client-info">
 							<div class="client-name">Jona Leoner</div>
 							<div class="client-desc">
-								<p>“Lorem Ipsum is simply dummy text of the print book. It has survived not only five centuries, but also the leap”</p>
+								<p>“Lorem Ipsum is simply dummy text of the print book. It
+									has survived not only five centuries, but also the leap”</p>
 							</div>
 							<div class="testimonial-rating">
 								<ul>
@@ -412,7 +461,8 @@
 						<div class="client-info">
 							<div class="client-name">Takar Bowa</div>
 							<div class="client-desc">
-								<p>“Lorem Ipsum is simply dummy text of the print book. It has survived not only five centuries, but also the leap”</p>
+								<p>“Lorem Ipsum is simply dummy text of the print book. It
+									has survived not only five centuries, but also the leap”</p>
 							</div>
 							<div class="testimonial-rating">
 								<ul>
@@ -432,7 +482,8 @@
 						<div class="client-info">
 							<div class="client-name">Johan Doe</div>
 							<div class="client-desc">
-								<p>“Lorem Ipsum is simply dummy text of the print book. It has survived not only five centuries, but also the leap”</p>
+								<p>“Lorem Ipsum is simply dummy text of the print book. It
+									has survived not only five centuries, but also the leap”</p>
 							</div>
 							<div class="testimonial-rating">
 								<ul>
@@ -452,7 +503,8 @@
 						<div class="client-info">
 							<div class="client-name">Alex Saanu</div>
 							<div class="client-desc">
-								<p>“Lorem Ipsum is simply dummy text of the print book. It has survived not only five centuries, but also the leap”</p>
+								<p>“Lorem Ipsum is simply dummy text of the print book. It
+									has survived not only five centuries, but also the leap”</p>
 							</div>
 							<div class="testimonial-rating">
 								<ul>
@@ -472,7 +524,8 @@
 						<div class="client-info">
 							<div class="client-name">Jona Leoner</div>
 							<div class="client-desc">
-								<p>“Lorem Ipsum is simply dummy text of the print book. It has survived not only five centuries, but also the leap”</p>
+								<p>“Lorem Ipsum is simply dummy text of the print book. It
+									has survived not only five centuries, but also the leap”</p>
 							</div>
 							<div class="testimonial-rating">
 								<ul>
@@ -492,7 +545,8 @@
 						<div class="client-info">
 							<div class="client-name">Takar Bowa</div>
 							<div class="client-desc">
-								<p>“Lorem Ipsum is simply dummy text of the print book. It has survived not only five centuries, but also the leap”</p>
+								<p>“Lorem Ipsum is simply dummy text of the print book. It
+									has survived not only five centuries, but also the leap”</p>
 							</div>
 							<div class="testimonial-rating">
 								<ul>
@@ -512,7 +566,8 @@
 
 
 		<!-- Start Of Reservation Part -->
-		<section class="reservation-part left-padding mb-150 position-r overflow-h">
+		<section
+			class="reservation-part left-padding mb-150 position-r overflow-h">
 			<div class="row align-items-center">
 				<div class="col-xl-5 col-lg-6 col-md-12">
 					<div class="section-heading section-heading-left wow fadeInLeft">
@@ -523,32 +578,38 @@
 						<div class="row">
 							<div class="col-xl-6 col-lg-6 col-md-6">
 								<div class="form-group">
-									<input type="text" name="text" class="form-control" placeholder="Name*" required>
+									<input type="text" name="text" class="form-control"
+										placeholder="Name*" required>
 								</div>
 							</div>
 							<div class="col-xl-6 col-lg-6 col-md-6">
 								<div class="form-group">
-									<input type="text" name="text" class="form-control" placeholder="Email*" required>
+									<input type="text" name="text" class="form-control"
+										placeholder="Email*" required>
 								</div>
 							</div>
 							<div class="col-xl-6 col-lg-6 col-md-6">
 								<div class="form-group">
-									<input type="text" name="text" class="form-control" placeholder="Phone*" required>
+									<input type="text" name="text" class="form-control"
+										placeholder="Phone*" required>
 								</div>
 							</div>
 							<div class="col-xl-6 col-lg-6 col-md-6">
 								<div class="form-group">
-									<input type="text" name="text" class="form-control" placeholder="Time*" required>
+									<input type="text" name="text" class="form-control"
+										placeholder="Time*" required>
 								</div>
 							</div>
 							<div class="col-xl-6 col-lg-6 col-md-6">
 								<div class="form-group">
-									<input type="text" name="text" class="form-control" placeholder="Date*" required>
+									<input type="text" name="text" class="form-control"
+										placeholder="Date*" required>
 								</div>
 							</div>
 							<div class="col-xl-6 col-lg-6 col-md-6">
 								<div class="form-group">
-									<input type="text" name="text" class="form-control" placeholder="Guest*" required>
+									<input type="text" name="text" class="form-control"
+										placeholder="Guest*" required>
 								</div>
 							</div>
 							<div class="form-button">
@@ -568,7 +629,8 @@
 						<div class="book-leaf book-leaf-3">
 							<img src="images/leaf-3.png" alt="Leaf">
 						</div>
-						<img src="images/reservation-pizza.png" class="position-r" alt="Pizza">
+						<img src="images/reservation-pizza.png" class="position-r"
+							alt="Pizza">
 					</div>
 				</div>
 			</div>
@@ -593,11 +655,17 @@
 					<div class="col-xl-6 col-lg-6 col-md-12">
 						<div class="blog-singel-list wow fadeInLeft">
 							<div class="blog-img">
-								<a href="blog-detail.html"><img src="images/blog-1.jpg" alt="Blog Image"></a>
+								<a href="blog-detail.html"><img src="images/blog-1.jpg"
+									alt="Blog Image"></a>
 							</div>
 							<div class="blog-list-content">
-								<div class="blog-date"><span>07 Mar 2022 </span></div>
-								<h5 class="blog-title"><a href="blog-detail.html">How to keep fear from ruining your art business with confident</a></h5>
+								<div class="blog-date">
+									<span>07 Mar 2022 </span>
+								</div>
+								<h5 class="blog-title">
+									<a href="blog-detail.html">How to keep fear from ruining
+										your art business with confident</a>
+								</h5>
 								<div class="blog-author">
 									<div class="author">
 										<div class="author-detail">
@@ -611,7 +679,8 @@
 										</div>
 									</div>
 									<div class="read-link">
-										<a href="blog-detail.html" class="read-more">Read More <img src="images/right-arrow-red.png" alt="Right Arrow"></a>
+										<a href="blog-detail.html" class="read-more">Read More <img
+											src="images/right-arrow-red.png" alt="Right Arrow"></a>
 									</div>
 								</div>
 							</div>
@@ -623,13 +692,20 @@
 								<div class="row align-items-center">
 									<div class="col-xl-6 col-lg-7 col-md-12">
 										<div class="blog-img">
-											<a href="blog-detail.html"><img src="images/blog-2.jpg" alt="Blog Image"></a>
+											<a href="blog-detail.html"><img src="images/blog-2.jpg"
+												alt="Blog Image"></a>
 										</div>
 									</div>
 									<div class="col-xl-6 col-lg-5 col-md-12">
-										<div class="blog-date"><span>07 Mar 2022 </span></div>
-										<h6 class="blog-title"><a href="blog-detail.html">How to keep fear from ruining your art business with confident</a></h6>
-										<a href="blog-detail.html" class="read-more">Read More <img src="images/right-arrow-red.png" alt="Right Arrow"></a>
+										<div class="blog-date">
+											<span>07 Mar 2022 </span>
+										</div>
+										<h6 class="blog-title">
+											<a href="blog-detail.html">How to keep fear from ruining
+												your art business with confident</a>
+										</h6>
+										<a href="blog-detail.html" class="read-more">Read More <img
+											src="images/right-arrow-red.png" alt="Right Arrow"></a>
 									</div>
 								</div>
 							</div>
@@ -637,13 +713,20 @@
 								<div class="row align-items-center">
 									<div class="col-xl-6 col-lg-7 col-md-12">
 										<div class="blog-img">
-											<a href="blog-detail.html"><img src="images/blog-3.jpg" alt="Blog Image"></a>
+											<a href="blog-detail.html"><img src="images/blog-3.jpg"
+												alt="Blog Image"></a>
 										</div>
 									</div>
 									<div class="col-xl-6 col-lg-5 col-md-12">
-										<div class="blog-date"><span>07 Mar 2022 </span></div>
-										<h6 class="blog-title"><a href="blog-detail.html">How to keep fear from ruining your art business with confident</a></h6>
-										<a href="blog-detail.html" class="read-more">Read More <img src="images/right-arrow-red.png" alt="Right Arrow"></a>
+										<div class="blog-date">
+											<span>07 Mar 2022 </span>
+										</div>
+										<h6 class="blog-title">
+											<a href="blog-detail.html">How to keep fear from ruining
+												your art business with confident</a>
+										</h6>
+										<a href="blog-detail.html" class="read-more">Read More <img
+											src="images/right-arrow-red.png" alt="Right Arrow"></a>
 									</div>
 								</div>
 							</div>
@@ -651,13 +734,20 @@
 								<div class="row align-items-center">
 									<div class="col-xl-6 col-lg-7 col-md-12">
 										<div class="blog-img">
-											<a href="blog-detail.html"><img src="images/blog-4.jpg" alt="Blog Image"></a>
+											<a href="blog-detail.html"><img src="images/blog-4.jpg"
+												alt="Blog Image"></a>
 										</div>
 									</div>
 									<div class="col-xl-6 col-lg-5 col-md-12">
-										<div class="blog-date"><span>07 Mar 2022 </span></div>
-										<h6 class="blog-title"><a href="blog-detail.html">How to keep fear from ruining your art business with confident</a></h6>
-										<a href="blog-detail.html" class="read-more">Read More <img src="images/right-arrow-red.png" alt="Right Arrow"></a>
+										<div class="blog-date">
+											<span>07 Mar 2022 </span>
+										</div>
+										<h6 class="blog-title">
+											<a href="blog-detail.html">How to keep fear from ruining
+												your art business with confident</a>
+										</h6>
+										<a href="blog-detail.html" class="read-more">Read More <img
+											src="images/right-arrow-red.png" alt="Right Arrow"></a>
 									</div>
 								</div>
 							</div>
@@ -716,10 +806,14 @@
 					<div class="col-xl-3 col-lg-6 col-md-6 footer-box wow fadeInUp">
 						<h6 class="footer-title text-uppercase">Social Media</h6>
 						<ul class="footer-social">
-							<li><a href="#" class="facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-							<li><a href="#" class="pinterest"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
-							<li><a href="#" class="twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-							<li><a href="#" class="instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+							<li><a href="#" class="facebook"><i
+									class="fa fa-facebook" aria-hidden="true"></i></a></li>
+							<li><a href="#" class="pinterest"><i
+									class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
+							<li><a href="#" class="twitter"><i class="fa fa-twitter"
+									aria-hidden="true"></i></a></li>
+							<li><a href="#" class="instagram"><i
+									class="fa fa-instagram" aria-hidden="true"></i></a></li>
 						</ul>
 						<div class="footer-offers-text">
 							<p>Signup and get exclusive offers and coupon codes</p>
@@ -740,8 +834,10 @@
 							</div>
 							<div class="col-xl-4 col-lg-3 col-md-12 wow fadeInRight">
 								<ul class="app-list">
-									<li><a href="#"><img src="images/google-play.png" alt="Google Play"></a></li>
-									<li><a href="#"><img src="images/app-stor.png" alt="App Stor"></a></li>
+									<li><a href="#"><img src="images/google-play.png"
+											alt="Google Play"></a></li>
+									<li><a href="#"><img src="images/app-stor.png"
+											alt="App Stor"></a></li>
 								</ul>
 							</div>
 						</div>
@@ -752,7 +848,9 @@
 		<div class="copyright">
 			<div class="container">
 				<div class="text-center">
-					<p>&#169; 2023 Pizzon. All Rights Reserved by <a href="#">Templatescoder</a></p>
+					<p>
+						&#169; 2023 Pizzon. All Rights Reserved by <a href="#">Templatescoder</a>
+					</p>
 				</div>
 			</div>
 		</div>
@@ -766,13 +864,16 @@
 		<div class="search-form">
 			<button class="close"></button>
 			<form>
-				<input type="text" name="search" placeholder="What are you looking for?" class="search-input">
-				<button type="submit"><img src="images/search-icon-white.png" alt="Search Icon"></button>
+				<input type="text" name="search"
+					placeholder="What are you looking for?" class="search-input">
+				<button type="submit">
+					<img src="images/search-icon-white.png" alt="Search Icon">
+				</button>
 			</form>
 		</div>
 	</div>
 	<!-- End Of Search Popup -->
-	
+
 
 	<!-- Start Of Cart Drawer -->
 	<div class="cart-drawer">
@@ -787,63 +888,72 @@
 					<div class="cart-list-inner">
 						<div class="cart-item">
 							<div class="item-image">
-								<a href="shop-detail.html"><img src="images/pizza-1.png" alt="Item Image"></a>
+								<a href="shop-detail.html"><img src="images/pizza-1.png"
+									alt="Item Image"></a>
 							</div>
 							<div class="item-detl">
 								<div class="item-name">
-									<a href="shop-detail.html">Shrimp pizza</a>
-									<a class="item-remove" href="#"><img src="images/delete.png" alt="delete"></a>
+									<a href="shop-detail.html">Shrimp pizza</a> <a
+										class="item-remove" href="#"><img src="images/delete.png"
+										alt="delete"></a>
 								</div>
 								<div class="item-price">
 									<span>$35.00</span>
 								</div>
 								<div class="quantity-editer">
 									<div class="quantity">
-									  	<button type="button" class="sub minus">-</button>
-									  	<input class="count" name="quantity" type="number" value="1" min="1" max="10">
-									  	<button type="button" class="add plus">+</button>
+										<button type="button" class="sub minus">-</button>
+										<input class="count" name="quantity" type="number" value="1"
+											min="1" max="10">
+										<button type="button" class="add plus">+</button>
 									</div>
 								</div>
 							</div>
 						</div>
 						<div class="cart-item">
 							<div class="item-image">
-								<a href="shop-detail.html"><img src="images/pizza-2.png" alt="Item Image"></a>
+								<a href="shop-detail.html"><img src="images/pizza-2.png"
+									alt="Item Image"></a>
 							</div>
 							<div class="item-detl">
 								<div class="item-name">
-									<a href="shop-detail.html">Seafood pizza</a>
-									<a class="item-remove" href="#"><img src="images/delete.png" alt="delete"></a>
+									<a href="shop-detail.html">Seafood pizza</a> <a
+										class="item-remove" href="#"><img src="images/delete.png"
+										alt="delete"></a>
 								</div>
 								<div class="item-price">
 									<span>$65.00</span>
 								</div>
 								<div class="quantity-editer">
 									<div class="quantity">
-									  	<button type="button" class="sub minus">-</button>
-									  	<input class="count" name="quantity" type="number" value="1" min="1" max="10">
-									  	<button type="button" class="add plus">+</button>
+										<button type="button" class="sub minus">-</button>
+										<input class="count" name="quantity" type="number" value="1"
+											min="1" max="10">
+										<button type="button" class="add plus">+</button>
 									</div>
 								</div>
 							</div>
 						</div>
 						<div class="cart-item">
 							<div class="item-image">
-								<a href="shop-detail.html"><img src="images/pizza-3.png" alt="Item Image"></a>
+								<a href="shop-detail.html"><img src="images/pizza-3.png"
+									alt="Item Image"></a>
 							</div>
 							<div class="item-detl">
 								<div class="item-name">
 									<a class="item-title" href="shop-detail.html">Cheese pizza</a>
-									<a class="item-remove" href="#"><img src="images/delete.png" alt="delete"></a>
+									<a class="item-remove" href="#"><img
+										src="images/delete.png" alt="delete"></a>
 								</div>
 								<div class="item-price">
 									<span>$45.00</span>
 								</div>
 								<div class="quantity-editer">
 									<div class="quantity">
-									  	<button type="button" class="sub minus">-</button>
-									  	<input class="count" name="quantity" type="number" value="1" min="1" max="10">
-									  	<button type="button" class="add plus">+</button>
+										<button type="button" class="sub minus">-</button>
+										<input class="count" name="quantity" type="number" value="1"
+											min="1" max="10">
+										<button type="button" class="add plus">+</button>
 									</div>
 								</div>
 							</div>
@@ -860,7 +970,8 @@
 				</div>
 				<div class="cart-button">
 					<ul>
-						<li><a href="cart.html" class="btn-ct btn-small">View Cart</a></li>
+						<li><a href="cart.html" class="btn-ct btn-small">View
+								Cart</a></li>
 						<li><a href="checkout.html" class="btn-ct btn-small subtotal">Checkout</a></li>
 					</ul>
 				</div>

@@ -16,6 +16,7 @@
 		<property name="hibernate.hbm2ddl.auto">update</property>
 		<!-- Entités à scanner pour Hibernate -->
 		<mapping class="model.Pizza" />
+		<mapping class="model.User" />
 		
 		
 	</session-factory>
