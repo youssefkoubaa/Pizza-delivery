@@ -17,6 +17,8 @@
 		<!-- Entités à scanner pour Hibernate -->
 		<mapping class="model.Pizza" />
 		<mapping class="model.User" />
+		<mapping class="model.Cart"/>
+		
 		
 		
 	</session-factory>

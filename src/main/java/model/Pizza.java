@@ -20,13 +20,13 @@ public class Pizza {
     private String image;
     
     @Column(name = "prix") 
-    private String prix;
+    private double prix;
 
     // Default constructor required by JPA
     public Pizza() {}
 
     // Constructor with parameters (excluding id)
-    public Pizza(String name, String description, String prix, String image) {
+    public Pizza(String name, String description, double prix, String image) {
         this.name = name;
         this.description = description;
         this.image = image;
@@ -70,11 +70,11 @@ public class Pizza {
     }
 
     // Getter and Setter for prix
-    public String getPrix() {
+    public double getPrix() {
         return prix;
     }
 
-    public void setPrix(String prix) {
+    public void setPrix(double prix) {
         this.prix = prix;
     }
 }

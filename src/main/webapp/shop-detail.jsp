@@ -45,84 +45,8 @@ Pizza selectedPizza = pizzaDao.getPizza(pizzaId);
 	<!-- Preloader End -->
 
 	<!-- Header Start -->
-	<header>
-		<div class="header-vacter">
-			<img src="images/header-img.png" alt="Vacter Image">
-		</div>
-		<div class="container-big">
-			<div class="header-inner">
-				<div class="row align-items-center">
-					<div class="col-xl-3 col-lg-3 col-md-3 col-5">
-						<div class="header-logo">
-							<a href="index.html"><img src="images/logo.png"
-								alt="Brand Logo"></a>
-						</div>
-					</div>
-					<div class="col-xl-9 col-lg-9 col-md-9 col-7">
-						<div class="main-menu">
-							<div class="menu-toggle">
-								<span></span>
-							</div>
-							<div class="menu">
-								<div class="sidemenu-header">
-									<div class="sidemenu-logo">
-										<img src="images/logo.png" alt="Brand Logo">
-									</div>
-									<div class="sidemenu-close">
-										<span></span>
-									</div>
-								</div>
-								<ul>
-									<li><a href="index.html">Home</a></li>
-									<li class="active"><span class="opener"></span> <a
-										href="javascript:void(0)">Shop</a>
-										<ul class="dropdown-content">
-											<li><a href="shop-list.html">Shop List</a></li>
-											<li class="active"><a href="shop-detail.html">Shop
-													Detail</a></li>
-											<li><a href="cart.html">Cart</a></li>
-											<li><a href="checkout.html">Checkout</a></li>
-										</ul></li>
-									<li><span class="opener"></span> <a
-										href="javascript:void(0)">Pages</a>
-										<ul class="dropdown-content">
-											<li><a href="about.html">About Us</a></li>
-											<li><a href="our-menu.html">Our Menu</a></li>
-											<li><a href="our-team.html">Our Team</a></li>
-											<li><a href="book-now.html">Book Now</a></li>
-											<li><a href="404.html">404 Page</a></li>
-										</ul></li>
-									<li><span class="opener"></span> <a
-										href="javascript:void(0)">Blog</a>
-										<ul class="dropdown-content">
-											<li><a href="blog-right.html">Blog Right</a></li>
-											<li><a href="blog-left.html">Blog Left</a></li>
-											<li><a href="blog-detail.html">Blog Detail</a></li>
-										</ul></li>
-									<li><a href="contact-us.html">Contact</a></li>
-								</ul>
-							</div>
-							<div class="icon-menu">
-								<ul>
-									<li class="search"><a href="javascript:void(0)"> <img
-											src="images/search-icon.png" class="normal-icon"
-											alt="Search Icon"> <img src="images/search-icon-2.png"
-											class="hover-icon" alt="Search Icon">
-									</a></li>
-									<li class="cart-slide position-r"><a
-										href="javascript:void(0)"> <img src="images/cart-icon.png"
-											class="normal-icon" alt="Cart Icon"> <img
-											src="images/cart-icon-2.png" class="hover-icon"
-											alt="Cart Icon"> <span class="cart-count">0</span>
-									</a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</header>
+			<%@include file="/includes/navbar.jsp"%>
+	
 	<!-- Header End -->
 
 
@@ -214,19 +138,21 @@ Pizza selectedPizza = pizzaDao.getPizza(pizzaId);
 								<%-- Add to cart button and other actions can be included here --%>
 							</div>
 							<div class="add-cart-box">
-								<div class="number">
-									<input type="text" value="1"> <span class="minus"><i
-										class="fa fa-angle-up" aria-hidden="true"></i></span> <span
-										class="plus"><i class="fa fa-angle-down"
-										aria-hidden="true"></i></span>
-								</div>
-								<div class="cart-button">
-									<a href="cart.html" class="btn-ct">Add To Cart</a>
-								</div>
-								<div class="wish-list">
-									<a href="#" class="wish-btn"><i class="fa fa-heart-o"
-										aria-hidden="true"></i></a>
-								</div>
+								<div class="add-cart-box">
+								<form action="AddToCart" method="post">
+									<input type="hidden" name="pizzaId"
+										value="<%=selectedPizza.getId()%>" />
+									<div class="number">
+										<input type="number" name="quantity" value="1" min="1">
+										<span class="minus"><i class="fa fa-angle-down"
+											aria-hidden="true"></i></span> <span class="plus"><i
+											class="fa fa-angle-up" aria-hidden="true"></i></span>
+									</div>
+									<div class="cart-button">
+										<button type="submit" class="btn-ct">Add To Cart</button>
+									</div>
+								</form>
+							</div>
 							</div>
 						</div>
 					</div>
@@ -235,6 +161,66 @@ Pizza selectedPizza = pizzaDao.getPizza(pizzaId);
 		</section>
 
 		<!-- End Of Shop Detail -->
+		<section class="shop-detail ptb-100">
+			<div class="container">
+				<div class="row">
+					<div class="col-xl-6 col-lg-6 col-md-12 md-mb-40">
+						<div class="glasscase-main">
+							<ul id="glasscase" class="gc-start">
+								<%
+								for (Pizza pizza : pizzas) {
+								%>
+								<li><a href="shop-detail.jsp?id=<%=pizza.getId()%>"><img
+										src="images/<%=pizza.getImage()%>" alt="<%=pizza.getName()%>"></a></li>
+								<%
+								}
+								%>
+							</ul>
+						</div>
+					</div>
+
+					<div class="col-xl-6 col-lg-6 col-md-12">
+						<div class="product-detail">
+							<!-- Your product details will be dynamically loaded here based on the selected pizza -->
+							<h2 class="product-title"><%=selectedPizza.getName()%></h2>
+							<div class="product-price">
+								<div class="price">
+									<span><%=selectedPizza.getPrix()%></span>
+								</div>
+								<div class="rating-summary-block">
+									<!-- Rating summary HTML here -->
+								</div>
+							</div>
+
+							<div class="product-description">
+								<p><%=selectedPizza.getDescription()%></p>
+								<!-- Additional product description can be added here -->
+							</div>
+
+							<div class="add-cart-box">
+								<form action="add-to-cart" method="post">
+									<input type="hidden" name="pizzaId"
+										value="<%=selectedPizza.getId()%>" />
+									<div class="number">
+										<input type="number" name="quantity" value="1" min="1">
+										<span class="minus"><i class="fa fa-angle-down"
+											aria-hidden="true"></i></span> <span class="plus"><i
+											class="fa fa-angle-up" aria-hidden="true"></i></span>
+									</div>
+									<div class="cart-button">
+										<button type="submit" class="btn-ct">Add To Cart</button>
+									</div>
+								</form>
+							</div>
+							<div class="wish-list">
+								<a href="#" class="wish-btn"><i class="fa fa-heart-o"
+									aria-hidden="true"></i></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
 
 
 		<!-- Start Of Product Description -->

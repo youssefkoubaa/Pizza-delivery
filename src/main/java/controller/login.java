@@ -32,6 +32,8 @@ public class login extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/index.jsp");
         } else {
             // Invalid credentials
+            HttpSession session = request.getSession(true);
+            session.setAttribute("user", null); // Set null user in session
             response.sendRedirect(request.getContextPath() + "/login.jsp?error=invalid");
         }
     }
