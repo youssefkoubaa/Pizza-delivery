@@ -39,7 +39,7 @@
 										<ul class="dropdown-content">
 											<li><a href="shop-list.html">Shop List</a></li>
 											<li><a href="shop-detail.html">Shop Detail</a></li>
-											<li><a href="cart.jsp">Cart</a></li>
+											<li><a href="AddToCart">Cart</a></li>
 											<li><a href="checkout.html">Checkout</a></li>
 										</ul></li>
 									<li><span class="opener"></span> <a

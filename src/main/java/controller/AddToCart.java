@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import dao.CartDAO;
@@ -29,7 +30,25 @@ public class AddToCart extends HttpServlet {
     public AddToCart() {
         super();
     }
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
 
+        HttpSession session = request.getSession(false);
+
+        User user = (User) session.getAttribute("user");
+        if (user != null) {
+    	List<Cart> cartList = cartDAO.findCartsByUsername(user);
+        
+        // Set cartList attribute in the request
+        request.setAttribute("cartList", cartList);
+        
+        // Forward to cart.jsp to display the carts
+        
+        }
+        RequestDispatcher dispatcher = request.getRequestDispatcher("cart.jsp");
+        dispatcher.forward(request, response);
+    }
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession(false);
