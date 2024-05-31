@@ -47,4 +47,34 @@
     <servlet-name>AddToCart</servlet-name>
     <url-pattern>/AddToCart</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>addChekout</display-name>
+    <servlet-name>addChekout</servlet-name>
+    <servlet-class>controller.addChekout</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>addChekout</servlet-name>
+    <url-pattern>/addChekout</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>checkout</display-name>
+    <servlet-name>checkout</servlet-name>
+    <servlet-class>controller.checkout</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>checkout</servlet-name>
+    <url-pattern>/checkout</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>OrderServlet</display-name>
+    <servlet-name>OrderServlet</servlet-name>
+    <servlet-class>controller.OrderServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>OrderServlet</servlet-name>
+    <url-pattern>/OrderServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

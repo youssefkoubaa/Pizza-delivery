@@ -3,13 +3,11 @@
 //
 //import java.time.LocalDate;
 //
-//import main.OrderStatus;
 //import java.util.HashSet;
 //import java.util.Set;
 //
 //import jakarta.persistence.*;
 //
-//import main.OrderStatus;
 //
 //@Entity
 //@Table(name = "orders")
@@ -24,9 +22,7 @@
 //	@Column(name= "amount")
 //	private double amount;
 //	
-//	@Enumerated(EnumType.STRING)
-//	@Column(name = "status")
-//	private OrderStatus status;
+//
 //
 //	@Column(name = "address")
 //	private String address;

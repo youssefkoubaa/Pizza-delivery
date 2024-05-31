@@ -40,7 +40,7 @@
 											<li><a href="shop-list.html">Shop List</a></li>
 											<li><a href="shop-detail.html">Shop Detail</a></li>
 											<li><a href="AddToCart">Cart</a></li>
-											<li><a href="checkout.html">Checkout</a></li>
+											<li><a href="checkout">Checkout</a></li>
 										</ul></li>
 									<li><span class="opener"></span> <a
 										href="javascript:void(0)">Pages</a>
