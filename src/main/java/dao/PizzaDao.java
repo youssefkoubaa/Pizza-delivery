@@ -1,13 +1,11 @@
 package dao;
 
 import model.Pizza;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import util.HibernateUtil;
-
 import java.util.List;
 
 public class PizzaDao {
@@ -44,6 +42,14 @@ public class PizzaDao {
     public List<Pizza> getAllPizzas() {
         try (Session session = sessionFactory.openSession()) {
             return session.createQuery("FROM Pizza", Pizza.class).getResultList();
+        }
+    }
+
+    public Pizza getPizzaById(int id) {
+        try (Session session = sessionFactory.openSession()) {
+            Query<Pizza> query = session.createQuery("FROM Pizza WHERE id = :id", Pizza.class);
+            query.setParameter("id", id);
+            return query.uniqueResult();
         }
     }
 

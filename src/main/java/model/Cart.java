@@ -11,38 +11,32 @@ import model.Pizza;
 public class Cart {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE)
-	@Column(name = "id")
-	private int id;
+    @GeneratedValue(strategy = GenerationType.TABLE)
+    @Column(name = "id")
+    private int id;
 
-
-	@ManyToOne
-	@JoinColumn(name = "pizzaid")
-	private Pizza pizza;
     @ManyToOne
-	@JoinColumn(name = "userid")
-	private User user;
+    @JoinColumn(name = "pizzaid")
+    private Pizza pizza;
 
-	
+    @ManyToOne
+    @JoinColumn(name = "userid")
+    private User user;
 
-	@Column(name = "quantity")
-	private int quantity;
+    @Column(name = "quantity")
+    private int quantity;
 
-	
-	@Column(name ="price")
-	private double price;
-	
+    @Column(name = "price")
+    private double price;
 
-	public Cart() {
-	}
+    public Cart() {}
 
-	public Cart( Pizza pizza,User user, int quantity,double price) {
-		this.user=user;
-		this.pizza = pizza;
-		this.quantity = quantity;
-		this.price = price;
-		
-	}
+    public Cart(Pizza pizza, User user, int quantity, double price) {
+        this.user = user;
+        this.pizza = pizza;
+        this.quantity = quantity;
+        this.price = price;
+    }
 
 	public int getId() {
 		return id;

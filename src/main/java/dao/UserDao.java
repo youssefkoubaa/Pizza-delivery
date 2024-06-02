@@ -10,10 +10,10 @@ import util.HibernateUtil;
 
 public class UserDao {
 
-    private SessionFactory sessionFactory;
+    private final SessionFactory sessionFactory;
 
     public UserDao() {
-        sessionFactory = HibernateUtil.getSessionFactory();
+        this.sessionFactory = HibernateUtil.getSessionFactory();
     }
 
     public void createUser(User user) {
@@ -61,6 +61,17 @@ public class UserDao {
         } catch (Exception e) {
             if (tx != null) tx.rollback();
             throw e;
+        } finally {
+            session.close();
+        }
+    }
+
+    public User getUserById(int id) {
+        Session session = sessionFactory.openSession();
+        try {
+            Query<User> query = session.createQuery("FROM User WHERE id = :id", User.class);
+            query.setParameter("id", id);
+            return query.uniqueResult();
         } finally {
             session.close();
         }

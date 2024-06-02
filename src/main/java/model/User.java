@@ -22,17 +22,28 @@ public class User {
 
     @Column(name = "mobile")
     private String mobile;
+    @Column(name = "role")
+    private int role; // Change the data type to int
 
     public User() {}
 
-    public User(String name, String email, String psw, String mobile) {
+    public User(String name, String email, String psw, String mobile, int role) { // Update constructor
         this.name = name;
         this.psw = psw;
         this.email = email;
         this.mobile = mobile;
+        this.role = role;
     }
 
-    public String getName() {
+    public int getRole() { // Change the return type to int
+        return role;
+    }
+
+    public void setRole(int role) { // Update the parameter type to int
+        this.role = role;
+    }
+
+	public String getName() {
         return name;
     }
 

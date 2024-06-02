@@ -18,6 +18,7 @@
 		<mapping class="model.Pizza" />
 		<mapping class="model.User" />
 		<mapping class="model.Cart"/>
+		<mapping class="model.Order"/>
 		
 		
 		

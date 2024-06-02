@@ -77,4 +77,54 @@
     <servlet-name>OrderServlet</servlet-name>
     <url-pattern>/OrderServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CommandeServlet</display-name>
+    <servlet-name>CommandeServlet</servlet-name>
+    <servlet-class>controller.CommandeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CommandeServlet</servlet-name>
+    <url-pattern>/CommandeServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Orderservlet</display-name>
+    <servlet-name>Orderservlet</servlet-name>
+    <servlet-class>controller.Orderservlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Orderservlet</servlet-name>
+    <url-pattern>/Orderservlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>chefServlet</display-name>
+    <servlet-name>chefServlet</servlet-name>
+    <servlet-class>controller.chefServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>chefServlet</servlet-name>
+    <url-pattern>/chefServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>livrerServlet</display-name>
+    <servlet-name>livrerServlet</servlet-name>
+    <servlet-class>controller.livrerServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>livrerServlet</servlet-name>
+    <url-pattern>/livrerServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DeleteFromCartServlet</display-name>
+    <servlet-name>DeleteFromCartServlet</servlet-name>
+    <servlet-class>controller.DeleteFromCartServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteFromCartServlet</servlet-name>
+    <url-pattern>/DeleteFromCartServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

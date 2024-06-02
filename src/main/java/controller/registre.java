@@ -35,7 +35,7 @@ public class registre extends HttpServlet {
 
         if (psw.equals(confPsw)) {
             // Now we can instantiate User directly
-            User user = new User(name, email, psw, tel);
+            User user = new User(name, email, psw, tel,1);
             try {
                 userDao.createUser(user);
                 response.sendRedirect(request.getContextPath() + "/login.jsp");
